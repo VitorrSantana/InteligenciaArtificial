@@ -9,10 +9,11 @@ class No:
         self.custo = custo
         self.heuristica = heuristica
         self.morto = morto
+        self.custo_ate_aqui = 0
         self.adjacentes = []
 
     def get_peso_no(self) -> float:
-        return self.custo+self.heuristica
+        return self.heuristica + self.custo_ate_aqui
 
     def adiciona_adjacentes(self,adjacente):
         self.adjacentes.append(adjacente)
@@ -23,3 +24,6 @@ class No:
 
     def get_adjacentes(self):
         return len(self.adjacentes)
+    
+    def set_custo_ate_aqui(self,custo_aqui):
+        self.custo_ate_aqui = custo_aqui
