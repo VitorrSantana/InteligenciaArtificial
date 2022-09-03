@@ -1,9 +1,10 @@
+from email.policy import default
 from xmlrpc.client import Boolean
 
 
 class No:
     
-    def __init__(self,nodo,pai,custo,heuristica,morto = False) -> None:
+    def __init__(self,nodo=default,pai=default,custo=default,heuristica=default,morto = False) -> None:
         self.nodo  = nodo
         self.pai   = pai
         self.custo = custo
@@ -11,6 +12,7 @@ class No:
         self.morto = morto
         self.custo_ate_aqui = 0
         self.adjacentes = []
+        self.caminho = []
 
     def get_peso_no(self) -> float:
         return self.heuristica + self.custo_ate_aqui
@@ -27,3 +29,15 @@ class No:
     
     def set_custo_ate_aqui(self,custo_aqui):
         self.custo_ate_aqui = custo_aqui
+    
+    def get_caminho(self,no):
+        caminho = []
+        caminho.append(no.nodo)
+        while(no.pai!=default):
+            if type(no.pai.nodo)==int:
+                caminho.append(no.pai.nodo)
+            no = no.pai
+        print('O caminho para chegar nesse no foi: ',end='')
+        for cam in reversed(caminho):
+            print(f'E{cam}',end = ' ')
+        print()
