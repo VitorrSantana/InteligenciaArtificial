@@ -37,11 +37,11 @@ def proximo_no(no_atual,dist_real,heuristica,no_final,nos_abertos,no_objetivo):
             if dist[no_atual.nodo-1]!= 0  and cont != no_atual.nodo and no_atual.nodo != no_final.nodo and no_atual.pai.nodo!=cont:
                 no = No(cont,no_atual,dist[no_atual.nodo-1],heur[no_final.nodo-1])
                 no.set_custo_ate_aqui(no_atual.custo_ate_aqui + no.custo)
-                print(f'*** Custo para estar no NO {no.nodo} eh: {no.custo_ate_aqui} ***')
+                print(f'*** Custo para estar no NO {no.nodo} eh: {no.get_peso_no()} ***')
                 nos_abertos.append(no)
                 no_atual.adiciona_adjacentes(no)
             cont = cont + 1
-    no_atual.exibir_adjacentes()
+    # no_atual.exibir_adjacentes()
     
     # Verifica objetivo, para tomada de decisoes
     if no_atual.get_adjacentes()>0 and no_atual.nodo != no_final.nodo:
